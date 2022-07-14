@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 
 export default function LoginForm(){
@@ -18,6 +18,11 @@ export default function LoginForm(){
 
     let [username, updateUsername] = useState("");
     let [password, updatePassword] = useState("");
+
+    useEffect(
+        () => console.log(`username: ${username} password: ${password}`),
+        [username, password]
+    );
 
 
     function handleChangeUsername(event){

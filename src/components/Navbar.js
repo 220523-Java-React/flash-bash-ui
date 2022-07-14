@@ -1,3 +1,11 @@
+import AppBar from '@mui/material/AppBar';
+import Box from '@mui/material/Box';
+import Toolbar from '@mui/material/Toolbar';
+import Typography from '@mui/material/Typography';
+import { MenuItem } from '@mui/material';
+import {useNavigate} from "react-router-dom"
+
+const pages = ["Flashcards"]
 //                              object destructuring of the props object
 export default function Navbar({user}){
 
@@ -13,8 +21,54 @@ export default function Navbar({user}){
     // Typically, React devs use ternary based conditonal rendering
     //                                  return   <condition> ? <truthy> : <falsey>
 
-    return user ? 
-    <h1>Hello {user.name}!</h1> : 
-    <h1>Please log in!! :D</h1>
+    const navigate = useNavigate();
+    return (
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static">
+                <Toolbar>
+                <MenuItem onClick={() => navigate("/")}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    FlashBash
+                    </Typography>
+                </MenuItem>
+                
+
+                {user && pages.map((page) => (
+                <MenuItem key={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+                ))}
+                </Toolbar>
+            </AppBar>
+        </Box>
+    )
 }
 
+// this component is rendered if the user logged in 
+function AuthNavbar(){
+    const navigate = useNavigate();
+    return (
+        <Box sx={{ flexGrow: 1 }}>
+            <AppBar position="static">
+                <Toolbar>
+                <MenuItem onClick={() => navigate("/")}>
+                    <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+                    FlashBash
+                    </Typography>
+                </MenuItem>
+                
+                {pages.map((page) => (
+                <MenuItem key={page} onClick={() => navigate(`/${page.toLowerCase()}`)}>
+                  <Typography textAlign="center">{page}</Typography>
+                </MenuItem>
+                ))}
+                </Toolbar>
+            </AppBar>
+        </Box>
+    )
+}
+
+// this component is rendered if the user is not logged in 
+function NoAuthNavbar(){
+    return <h1>Please log in!! :D</h1>
+}

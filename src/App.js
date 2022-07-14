@@ -1,7 +1,11 @@
-import logo from './logo.svg';
+import {BrowserRouter, Route, Routes} from "react-router-dom"
 import './App.css';
 import Navbar from './components/Navbar'
 import LoginForm from './components/LoginForm';
+import HomePage from "./pages/HomePage";
+import LoginPage from "./pages/LoginPage";
+import FlashcardsPage from "./pages/FlashcardsPage";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
 
 
 let days = [
@@ -27,12 +31,22 @@ let {password, isLogged: isLoggedIn, flashcard: {question}} = user;
 // Destructuring in JS
 // Array Destructuring allows us to provide aliases in place of index retrieval is based on index/postion
 // Object Destructuring is based on key retrieval
+const darkTheme = createTheme({
+  palette: {
+    mode: 'dark'
+  },
+});
 
 function App() {
   return (
-    <>
-      <LoginForm />
-    </>
+    <ThemeProvider theme={darkTheme}>
+      <Navbar user={user} />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/flashcards" element={<FlashcardsPage />} />
+        <Route path="/login" element={<LoginPage />} />
+      </Routes>
+    </ThemeProvider>
   );
 }
 export default App;
