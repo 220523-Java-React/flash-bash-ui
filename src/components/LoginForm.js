@@ -1,46 +1,39 @@
-import { useState, useEffect } from "react";
+import API, {updateApi} from "../util/api";
+import {useState, useEffect} from 'react'
+import UserCredentialsForm from "./UserCredentialsForm";
+import {useNavigate} from "react-router-dom"
 
 
-export default function LoginForm(){
+export default function LoginForm({updateError, updateAppUser}){
 
-    // State Variables are special in that onChange/mutation of state
-    // React will trigger a rerender through a process called Reconcilliation
+    const [user, updateUser] = useState(null);
+    const navigate = useNavigate();
 
-    // How do we use state in React
-    // We can tap into state using Hooks;
+    useEffect(() => login(user), [user]);
 
-    // The main hook to use state in a component is the useState() hook
-
-    //   useState() is a function that returns two things
-    //           0th index: the state variable
-    //           1st index: the function to update the state variable
-    //   let [nameOfVariable, nameOfFunction] = useState(initialState); 
-
-    let [username, updateUsername] = useState("");
-    let [password, updatePassword] = useState("");
-
-    useEffect(
-        () => console.log(`username: ${username} password: ${password}`),
-        [username, password]
-    );
-
-
-    function handleChangeUsername(event){
-        updateUsername(event.target.value)
+    function login(user){
+        if(!user) return;
+        API.post("/authenticate", user)
+            .then((response) => handleData(response.data))
+            // .then(data => handleData(data))
+            // .catch((error) => updateError(error));
     }
 
-    function handleChangePassword(event){
-        updatePassword(event.target.value);
+    function handleData(data){
+
+        // Update API object to contain a header with the token thats within data
+        const {token} = data;
+        updateApi(token);
+
+        // Update the appUser to hold the User that is logged in
+        updateAppUser(data)
+
+        navigate("/flashcards")
     }
 
-    function submit(){
-        // TODO: replace me with an authentication call to the backend
-        console.log(username, password)
-    }
 
     return <>
-        <input type="text" value={username} onChange={handleChangeUsername} placeholder="username"/><br/>
-        <input type="password" value={password} onChange={handleChangePassword} placeholder="password"/><br/>
-        <button onClick={submit}>Login</button>
+        <UserCredentialsForm buttonLabel="Login" updateFunction={updateUser}/>
     </>
 }
+
