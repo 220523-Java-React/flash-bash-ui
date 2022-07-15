@@ -5,8 +5,9 @@ export default function Flashcard({flashcard}){
 
     const [isFlipped, updateIsFlipped] = useState(false);
 
-
-    return <Paper onClick={() => updateIsFlipped(!isFlipped)} component={Stack} sx={{ maxWidth: 500, minHeight:225}}>
+    // spacing moves the question/answer
+    // elevation is the background color of the Paper
+    return <Paper spacing={6} elevation={20} onClick={() => updateIsFlipped(!isFlipped)} component={Stack} sx={{ margin:3, maxWidth: 450, minHeight:215}}>
             <Typography gutterBottom>
                 {flashcard.topic}
             </Typography>
