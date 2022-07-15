@@ -7,8 +7,8 @@ export default function Flashcard({flashcard}){
 
     // spacing moves the question/answer
     // elevation is the background color of the Paper
-    return <Paper spacing={6} elevation={20} onClick={() => updateIsFlipped(!isFlipped)} component={Stack} sx={{ margin:3, maxWidth: 450, minHeight:215}}>
-            <Typography gutterBottom>
+    return <Paper spacing={8} elevation={20} onClick={() => updateIsFlipped(!isFlipped)} component={Stack} sx={{ margin:3, maxWidth: 450, minHeight:215}}>
+            <Typography pl={1}>
                 {flashcard.topic}
             </Typography>
 

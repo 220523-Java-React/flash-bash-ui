@@ -23,7 +23,7 @@ export default function LoginForm({updateError, updateAppUser}){
 
         // Update API object to contain a header with the token thats within data
         const {token} = data;
-        updateApi(token);
+        //updateApi(token);
 
         // Update the appUser to hold the User that is logged in
         updateAppUser(data)
