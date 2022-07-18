@@ -16,7 +16,7 @@ export default function LandingPage({updateError, updateAppUser}){
     return <>
         <Stack container={"true"} direction={"column"} alignItems={"center"} justifyContent={"center"} paddingTop={10}>
             <Stack item={"true"} width={1/3}>
-                <Card sx={{ display: "flex", flexDirection: "column", alignItems:"center"}}>
+                <Card sx={{ display: "flex", flexDirection: "column", alignItems:"center", backgroundColor: "#272727"}}>
                     <Tabs value={selectedTab} onChange={handleChange} aria-label={"login/registration tab selection"}>
                         <Tab label={"Login"} />
                         <Tab label={"Register"} />
