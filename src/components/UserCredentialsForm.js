@@ -14,7 +14,7 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
     //   useState() is a function that returns two things
     //           0th index: the state variable
     //           1st index: the function to update the state variable
-    //   let [nameOfVariable, nameOfFunction] = useState(initialState); 
+    //   let [nameOfVariable, nameOfFunction] = useState(initialState);
 
     let [username, updateUsername] = useState("");
     let [password, updatePassword] = useState("");
@@ -42,8 +42,8 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
     return <>
         <CardContent>
             <Box autoComplete={"off"}>
-                    <TextField type="text" value={username} onChange={handleChangeUsername} label={"Username"} variant={"filled"}/><br/>
-                    <TextField type="password" value={password} onChange={handleChangePassword} label={"Password"} variant={"filled"} margin={"normal"}/>
+                <TextField type="text" value={username} onChange={handleChangeUsername} label={"Username"} variant={"filled"}/><br/>
+                <TextField type="password" value={password} onChange={handleChangePassword} label={"Password"} variant={"filled"} margin={"normal"}/>
             </Box>
         </CardContent>
         <CardActions>

@@ -4,8 +4,6 @@ import RegistrationForm from "../components/RegistrationForm";
 import {Card, Stack, Tab, Tabs} from "@mui/material";
 
 
-
-
 export default function LandingPage({updateError, updateAppUser}){
 
     const [selectedTab, updateSelectedTab] = useState(0);
@@ -43,7 +41,7 @@ function TabPanel(props){
              hidden={value !== index}
              id={`tabpanel-${index}`}
              aria-label={`tab-${index}`}
-            {...other}>
+             {...other}>
             {value === index && children}
         </div>
     </>

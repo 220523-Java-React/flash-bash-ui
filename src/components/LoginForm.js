@@ -15,7 +15,6 @@ export default function LoginForm({updateError, updateAppUser}){
         if(!user) return;
         API.post("/authenticate", user)
             .then((response) => handleData(response.data))
-            // .then(data => handleData(data))
             .catch((error) => updateError(error));
     }
 

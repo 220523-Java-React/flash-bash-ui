@@ -17,7 +17,7 @@ export default function RegistrationForm({updateError}){
     function register(user){
         if(!user) return;
         let response = API.post('/users', user)
-          .then((response) => response.data())
+            .then((response) => response.data())
             .then((data) => console.log(data))
             .catch((error) => updateError(error));
     }
