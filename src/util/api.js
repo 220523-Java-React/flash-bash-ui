@@ -11,13 +11,10 @@ let API = axios.create({
 
 
 export function updateApi(token){
-    API = axios.create({
-        baseURL: BASE_API_URL,
-        timeout: 1000,
-        headers: {
-            Authorization: `Bearer ${token}`
-        }
-    })
+    API.interceptors.request.use(function (config){
+        config.headers.Authorization = `Bearer ${token}`
+        return config;
+    });
 }
 
 export default API;
