@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import API from "../util/api";
 import UserCredentialsForm from "./UserCredentialsForm";
 
-export default function RegistrationComponent({updateError}){
+export default function RegistrationForm({updateError}){
 
     // How do I get my child to do my bidding?
     //      How could a child component, update the auth user??

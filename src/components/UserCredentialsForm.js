@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-
+import { useState } from "react";
+import {Box, Button, CardActions, CardContent, TextField} from "@mui/material";
 
 export default function UserCredentialsForm({buttonLabel, updateFunction}){
 
@@ -31,7 +31,6 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
     function submit(){
         // TODO: combine the username/password into an object,
         // and lift the object back to the parent component
-
         let user = {
             username: username,
             password: password
@@ -41,8 +40,14 @@ export default function UserCredentialsForm({buttonLabel, updateFunction}){
     }
 
     return <>
-        <input type="text" value={username} onChange={handleChangeUsername} placeholder="username"/><br/>
-        <input type="password" value={password} onChange={handleChangePassword} placeholder="password"/><br/>
-        <button onClick={submit}>{buttonLabel}</button>
+        <CardContent>
+            <Box autoComplete={"off"}>
+                    <TextField type="text" value={username} onChange={handleChangeUsername} label={"Username"} variant={"filled"}/><br/>
+                    <TextField type="password" value={password} onChange={handleChangePassword} label={"Password"} variant={"filled"} margin={"normal"}/>
+            </Box>
+        </CardContent>
+        <CardActions>
+            <Button fullWidth={true} onClick={submit}>{buttonLabel}</Button>
+        </CardActions>
     </>
 }

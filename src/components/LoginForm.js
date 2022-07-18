@@ -16,19 +16,19 @@ export default function LoginForm({updateError, updateAppUser}){
         API.post("/authenticate", user)
             .then((response) => handleData(response.data))
             // .then(data => handleData(data))
-            // .catch((error) => updateError(error));
+            .catch((error) => updateError(error));
     }
 
     function handleData(data){
 
         // Update API object to contain a header with the token thats within data
         const {token} = data;
-        //updateApi(token);
+        updateApi(token);
 
         // Update the appUser to hold the User that is logged in
         updateAppUser(data)
 
-        navigate("/flashcards")
+        navigate("/")
     }
 
 
